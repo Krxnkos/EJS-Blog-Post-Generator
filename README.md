@@ -34,11 +34,11 @@
     - Configure EJS as the View Engine
  3. Create Partials **[DONE]**
     - Develop header and footer partials for consistent layout
- 4. Home Page Template **[TODO]**
+ 4. Home Page Template **[DONE]**
     - Create a Template to display a list of blog posts
- 5. Individual post template **[TODO]**
+ 5. Individual post template **[DONE]**
     - Design a template to show the full blog post content
- 6. Routing **[TODO]**
+ 6. Routing **[DONE]**
     - Implement Routes for the home page and individual posts
     - Pass the data to the templates
  7. Styling **[TODO]**
@@ -63,6 +63,6 @@
 A functioning blog with home page listing all posts and individual pages for each post using reusable EJS components and styled with CSS
 
 ### Extension Ideas ➡️
-- Add a Form to create new blog posts
-- Implement a Tagging System
-- Create a search functionality
+- Add a Form to create new blog posts **[TODO]**
+- Implement a Tagging System **[TODO]**
+- Create a search functionality **[TODO]**

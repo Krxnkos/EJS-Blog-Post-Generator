@@ -1,32 +1,53 @@
+// app.js
+
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 
 const app = express();
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Read blog data
-const blogData = JSON.parse(fs.readFileSync(path.join(__dirname, 'blog_data.json'), 'utf-8'));
+// In-memory storage for posts (replace with actual database in production)
+let posts = require('./blog_data.json').posts;
 
-// Home route
-app.get('/', (req, res) => {
-    res.render('home', { posts: blogData.posts });
+// Route to display the form
+app.get('/new-post', (req, res) => {
+  res.render('new-post');
 });
 
-// Individual post route
+// Route to handle form submission
+app.post('/new-post', (req, res) => {
+  const { title, author, date, content, tags } = req.body;
+  const newPost = {
+    id: posts.length + 1,
+    title,
+    author,
+    date,
+    content,
+    tags: tags.split(',').map(tag => tag.trim())
+  };
+  posts.push(newPost);
+
+  // Save to blog_data.json (for simplicity, not recommended for production)
+  fs.writeFileSync('./blog_data.json', JSON.stringify({ posts }, null, 2));
+
+  res.redirect('/');
+});
+
+// Existing routes...
+app.get('/', (req, res) => {
+  res.render('home', { posts });
+});
+
 app.get('/post/:id', (req, res) => {
-    const postId = parseInt(req.params.id, 10);
-    const post = blogData.posts.find(p => p.id === postId);
-    if (post) {
-        res.render('post', { post });
-    } else {
-        res.status(404).send('Post not found');
-    }
+  const post = posts.find(p => p.id === parseInt(req.params.id));
+  res.render('post', { post });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

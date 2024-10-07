@@ -1,0 +1,33 @@
+<!-- views/new-post.ejs -->
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="container">
+  <h1>Create a New Blog Post</h1>
+  <form action="/new-post" method="POST">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" required>
+    </div>
+    <div>
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+    </div>
+    <div>
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" rows="10" required></textarea>
+    </div>
+    <div>
+      <label for="tags">Tags (comma-separated):</label>
+      <input type="text" id="tags" name="tags" required>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<%- include('partials/footer') %>
