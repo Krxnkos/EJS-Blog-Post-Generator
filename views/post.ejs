@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <article>
+        <h1><%= post.title %></h1>
+        <p><small>By <%- post.author %> on <%= post.date %></small></p>
+        <div>
+            <%- post.content %>
+        </div>
+        <p>Tags: 
+            <% post.tags.forEach(tag => { %>
+                <span class="tag"><%= tag %></span>
+            <% }) %>
+        </p>
+    </article>
+</div>
+
+<%- include('partials/footer') %>

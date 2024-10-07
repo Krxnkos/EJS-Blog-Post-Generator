@@ -29,10 +29,10 @@
  1. Design **[TODO]**
     - Create a list of Functional and Non-Functional requirements for this project
     - Create at least 2 UML Diagrams to explain how the system will work
- 2. Server Setup **[TODO]**
+ 2. Server Setup **[DONE]**
     - Create an Experess.JS server
     - Configure EJS as the View Engine
- 3. Create Partials **[TODO]**
+ 3. Create Partials **[DONE]**
     - Develop header and footer partials for consistent layout
  4. Home Page Template **[TODO]**
     - Create a Template to display a list of blog posts

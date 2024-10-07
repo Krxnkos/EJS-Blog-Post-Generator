@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <header>
+        <h1>Welcome to My Blog</h1>
+        <p>Your go-to place for interesting articles and posts.</p>
+    </header>
+
+    <section class="featured-posts">
+        <h2>Featured Posts</h2>
+        <% posts.slice(0, 2).forEach(post => { %>
+            <article>
+                <h3><%= post.title %></h3>
+                <p><%= post.content.substring(0, 150) %>... <a href="/post/<%= post.id %>">Read more...</a></p>
+            </article>
+        <% }) %>
+    </section>
+
+    <section class="recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            <% posts.slice(2).forEach(post => { %>
+                <li><a href="/post/<%= post.id %>"><%= post.title %></a></li>
+            <% }) %>
+        </ul>
+    </section>
+</div>
+
+<%- include('partials/footer') %>
