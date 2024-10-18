@@ -1,49 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
+<%- include('partials/header') %>
 <body>
     <header>
-        <h1>My Blog</h1>
+        <h1>Welcome to BlogNet</h1>
     </header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-    </nav>
+
+    <%- include('partials/navbar') %>
     <main>
         <h2>Featured Posts</h2>
         <div class="feed-container">
             <% featuredPosts.forEach(function(post) { %>
-                <div class="post-card">
+                <a href="/post/<%= post.id %>" class="post-card">
                     <div class="post-card-content">
                         <h3 class="post-card-title"><%= post.title %></h3>
                         <p class="post-card-text"><%= post.excerpt %></p>
+                        <p class="post-card-preview"><%= post.preview %></p>
                     </div>
-                </div>
+                </a>
             <% }); %>
         </div>
-
+        <br>
+        <br>
+        <br>
         <h2>Recent Posts</h2>
-        <div class="feed-container">
+        <div class="feed-container recent-posts-container">
             <% recentPosts.forEach(function(post) { %>
-                <div class="post-card">
+                <a href="/post/<%= post.id %>" class="post-card">
                     <div class="post-card-content">
                         <h3 class="post-card-title"><%= post.title %></h3>
                         <p class="post-card-text"><%= post.excerpt %></p>
                     </div>
-                </div>
+                </a>
             <% }); %>
         </div>
     </main>
-    <footer>
-        <p>&copy; 2023 My Blog</p>
-    </footer>
+    <%- include('partials/footer') %>
 </body>
 </html>

@@ -1,0 +1,26 @@
+<!-- views/search-results.ejs -->
+
+<%- include('partials/header') %>
+
+<header>
+  <h1>Search Results for "<%= query %>"</h1>
+</header>
+<%- include('partials/navbar') %>
+<main>
+    <div class="feed-container">
+        <% if (searchResults.length > 0) { %>
+            <% searchResults.forEach(function(post) { %>
+                <div class="post-card">
+                    <div class="post-card-content">
+                        <h3 class="post-card-title"><%= post.title %></h3>
+                        <p class="post-card-text"><%= post.excerpt %></p>
+                        <a href="/post/<%= post.id %>" class="read-more-button">Read More</a>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No results found for "<%= query %>".</p>
+        <% } %>
+    </div>
+</main>
+<%- include('partials/footer') %>

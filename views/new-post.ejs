@@ -1,8 +1,11 @@
 <!-- views/new-post.ejs -->
 
 <%- include('partials/header') %>
-<%- include('partials/navbar') %>
 
+<header>
+  <h1>Create a New Post</h1>
+</header>
+<%- include('partials/navbar') %>
 <div class="container">
   <h1>Create a New Blog Post</h1>
   <form action="/new-post" method="POST">

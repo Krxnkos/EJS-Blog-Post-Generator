@@ -41,9 +41,9 @@
  6. Routing **[DONE]**
     - Implement Routes for the home page and individual posts
     - Pass the data to the templates
- 7. Styling **[TODO]**
+ 7. Styling **[DONE]**
     - Add basic CSS to improve the appearance of your blog
- 8. Testing **[TODO]**
+ 8. Testing **[DONE]**
     - Run the Server and verify functionality in the Browser
  9. Documentation **[TODO]**
     - Write Documentation for each step taken, making sure to reference back to the requirements gathered in Design.
@@ -54,7 +54,7 @@
   | Type of Concept | Reason                                                |
   | :---------------| :---------------------------------------------------- |
   | <% %>           | For JavaScript Logic (Loops, COnditionals)            |
-  | <%= %>          | For Outputting Escapted HTML                          |
+  | <%= %>          | For Outputting Escaped HTML                           |
   | <%- %>          | For Outputting Unescaped HTML Routes to EJS templates |
 
 *Passing variable from Express routes to EJS Templates*
@@ -63,6 +63,6 @@
 A functioning blog with home page listing all posts and individual pages for each post using reusable EJS components and styled with CSS
 
 ### Extension Ideas ➡️
-- Add a Form to create new blog posts **[TODO]**
-- Implement a Tagging System **[TODO]**
+- Add a Form to create new blog posts **[DONE]**
+- Implement a Tagging System **[DONE]**
 - Create a search functionality **[TODO]**

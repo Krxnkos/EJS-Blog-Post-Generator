@@ -1,9 +1,9 @@
 // app.js
 
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
-const fs = require('fs');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,8 +11,15 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 
-// In-memory storage for posts (replace with actual database in production)
-let posts = require('./blog_data.json').posts;
+// Read blog data from JSON file
+const blogDataPath = path.join(__dirname, 'blog_data.json');
+const blogData = JSON.parse(fs.readFileSync(blogDataPath, 'utf-8'));
+
+// Extract posts and add excerpts
+const posts = blogData.posts.map(post => ({
+    ...post,
+    excerpt: post.content.replace(/(<([^>]+)>)/gi, "").substring(0, 100) + '...' // Remove HTML tags and get first 100 characters
+}));
 
 // Route to display the form
 app.get('/new-post', (req, res) => {
@@ -31,27 +38,33 @@ app.post('/new-post', (req, res) => {
     tags: tags.split(',').map(tag => tag.trim())
   };
   posts.push(newPost);
-
-  // Save to blog_data.json (for simplicity, not recommended for production)
-  fs.writeFileSync('./blog_data.json', JSON.stringify({ posts }, null, 2));
-
   res.redirect('/');
 });
 
-// Existing routes...
 app.get('/', (req, res) => {
-  const featuredPosts = posts.slice(0, 2); // Example: first 2 posts as featured
-  const recentPosts = posts.slice(2); // Example: remaining posts as recent
+    const featuredPosts = posts.slice(0, 2); // Example: first 2 posts as featured
+    const recentPosts = posts.slice(2); // Example: remaining posts as recent
 
-  res.render('home', { featuredPosts, recentPosts });
+    res.render('home', { featuredPosts, recentPosts });
 });
 
 app.get('/post/:id', (req, res) => {
-  const post = posts.find(p => p.id === parseInt(req.params.id));
-  res.render('post', { post });
+    const post = posts.find(p => p.id === parseInt(req.params.id));
+    res.render('post', { post });
+});
+
+// Search route
+app.get('/search', (req, res) => {
+    const query = req.query.query.toLowerCase();
+    const searchResults = posts.filter(post => 
+        post.title.toLowerCase().includes(query) ||
+        post.content.toLowerCase().includes(query) ||
+        post.tags.some(tag => tag.toLowerCase().includes(query))
+    );
+    res.render('search', { searchResults, query });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}`);
+    console.log(`Server is running on port http://localhost:${PORT}`);
 });
