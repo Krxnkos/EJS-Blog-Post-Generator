@@ -1,30 +1,49 @@
-<%- include('partials/header') %>
-<%- include('partials/navbar') %>
-
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
     <header>
-        <h1>Welcome to My Blog</h1>
-        <p>Your go-to place for interesting articles and posts.</p>
+        <h1>My Blog</h1>
     </header>
-
-    <section class="featured-posts">
-        <h2>Featured Posts</h2>
-        <% posts.slice(0, 2).forEach(post => { %>
-            <article>
-                <h3><%= post.title %></h3>
-                <p><%- post.content.substring(0, 150) %>... <a href="/post/<%= post.id %>">Read more...</a></p>
-            </article>
-        <% }) %>
-    </section>
-
-    <section class="recent-posts">
-        <h2>Recent Posts</h2>
+    <nav>
         <ul>
-            <% posts.slice(2).forEach(post => { %>
-                <li><a href="/post/<%= post.id %>"><%= post.title %></a></li>
-            <% }) %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>
-    </section>
-</div>
+    </nav>
+    <main>
+        <h2>Featured Posts</h2>
+        <div class="feed-container">
+            <% featuredPosts.forEach(function(post) { %>
+                <div class="post-card">
+                    <div class="post-card-content">
+                        <h3 class="post-card-title"><%= post.title %></h3>
+                        <p class="post-card-text"><%= post.excerpt %></p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
 
-<%- include('partials/footer') %>
+        <h2>Recent Posts</h2>
+        <div class="feed-container">
+            <% recentPosts.forEach(function(post) { %>
+                <div class="post-card">
+                    <div class="post-card-content">
+                        <h3 class="post-card-title"><%= post.title %></h3>
+                        <p class="post-card-text"><%= post.excerpt %></p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 My Blog</p>
+    </footer>
+</body>
+</html>

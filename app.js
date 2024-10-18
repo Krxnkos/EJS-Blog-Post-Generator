@@ -9,6 +9,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static('public'));
 
 // In-memory storage for posts (replace with actual database in production)
 let posts = require('./blog_data.json').posts;
@@ -39,7 +40,10 @@ app.post('/new-post', (req, res) => {
 
 // Existing routes...
 app.get('/', (req, res) => {
-  res.render('home', { posts });
+  const featuredPosts = posts.slice(0, 2); // Example: first 2 posts as featured
+  const recentPosts = posts.slice(2); // Example: remaining posts as recent
+
+  res.render('home', { featuredPosts, recentPosts });
 });
 
 app.get('/post/:id', (req, res) => {
@@ -49,5 +53,5 @@ app.get('/post/:id', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port http://localhost:${PORT}`);
 });
