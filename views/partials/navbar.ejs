@@ -4,8 +4,13 @@
         <li><a href="/new-post">Create Post</a></li>
     </ul>
 </nav>
+<div class="search-container">
+    <form action="/search" method="GET" class="search-form">
+        <div>
 
-<form action="/search" method="GET" class="search-form">
-    <input type="text" name="query" placeholder="Search blog posts..." required>
-    <button type="submit"></button>
-</form>
+            <input type="text" name="query" placeholder="Search blog posts..." required>
+            <button type="submit"></button>
+
+        </div>        
+    </form>
+</div>

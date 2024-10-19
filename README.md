@@ -53,7 +53,7 @@
   ## Key EJS Concepts to be used 💭
   | Type of Concept | Reason                                                |
   | :---------------| :---------------------------------------------------- |
-  | <% %>           | For JavaScript Logic (Loops, COnditionals)            |
+  | <% %>           | For JavaScript Logic (Loops, Conditionals)            |
   | <%= %>          | For Outputting Escaped HTML                           |
   | <%- %>          | For Outputting Unescaped HTML Routes to EJS templates |
 
@@ -65,4 +65,4 @@ A functioning blog with home page listing all posts and individual pages for eac
 ### Extension Ideas ➡️
 - Add a Form to create new blog posts **[DONE]**
 - Implement a Tagging System **[DONE]**
-- Create a search functionality **[TODO]**
+- Create a search functionality **[DONE]**
